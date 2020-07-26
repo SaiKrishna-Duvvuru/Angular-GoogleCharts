@@ -1,0 +1,89 @@
+            <!-- <div class="jumbotron bg-white text-center">
+                <h1 class="display-4">Tracker</h1>
+                <hr>
+                <div class="row">
+                    <div class="card col p-3 m-3">
+                        <div class="ui statistic">
+                            <div class="label">
+                                <h3>Confirmed</h3>
+                            </div>
+                                <div class="value">
+                                {{totalConfirmed}}
+                                </div>
+                        </div>
+                    </div>
+                    <div class="card col p-3 m-3">
+                        <div class="ui statistic">
+                            <div class="label">
+                                <h3>Recovered</h3>
+                            </div>
+                                <div class="value">
+                                {{totalRecovered}}
+                                </div>
+                        </div>
+                    </div>
+                    <div class="card col p-3 m-3">
+                        <div class="ui statistic">
+                            <div class="label">
+                                <h3>Deaths</h3>
+                            </div>
+                                <div class="value">
+                                {{totalDeaths}}
+                                </div>
+                        </div>
+                    </div>
+                    <div class="card col p-3 m-3">
+                        <div class="ui statistic">
+                            <div class="label">
+                                <h3>Active</h3>
+                            </div>
+                                <div class="value">
+                                {{totalActive}}
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            
+    <div class="ui inverted dimmer" [class.active]="loading">
+        <div class="ui text loader">Loading</div>
+    </div>
+
+            <div class="jumbotron bg-white">
+                <h1 class="display-4 text-center">Tracker</h1>
+
+                <app-dashboard-card [totalConfirmed]='totalConfirmed' [totalRecovered]='totalRecovered' [totalDeaths]='totalDeaths'
+                    [totalActive]='totalActive'></app-dashboard-card>
+            </div>
+
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                <input type="radio" class="form-check-input" #c value="c" (click)="cases(c.value)" name="type">Confirmed
+                </label>
+            </div>
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                <input type="radio" class="form-check-input" #r  value="r" (click)="cases(r.value)" name="type">Recovered
+                </label>
+            </div>
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                <input type="radio" class="form-check-input" #d value="d" (click)="cases(d.value)" name="type">Deaths
+                </label>
+            </div>
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                <input type="radio" class="form-check-input" #a value="a" (click)="cases(a.value)" name="type">Active
+                </label>
+            </div>
+
+            <!-- Default unchecked -->
+
+            <div class="row">
+                <div class="col-md-6">
+                    <google-chart [type]='chart.PieChart' [data]= 'datatable' style="width: 100%;" [height]='chart.height' [options]='chart.options'></google-chart> 
+                </div>
+                <div class="col-md-6">
+                    <google-chart [type]='chart.ColumnChart' [data]= 'datatable' style="width: 100%;" [height]='chart.height' [options]='chart.options'></google-chart>
+                </div>
+            </div>

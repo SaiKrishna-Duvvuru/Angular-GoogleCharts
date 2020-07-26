@@ -1,0 +1,50 @@
+
+  <div class="ui inverted dimmer" [class.active]="loading">
+    <div class="ui text loader">Loading</div>
+  </div>
+  
+
+<div class="jumbotron bg-white text-center">
+    <h1 class="display-4">Tracker Country Wise</h1>
+    <hr>
+     <div class="mx-auto">
+   <div class="form-group col-md-5 mx-auto">
+          <label for="c"><strong>Select Country</strong></label>
+          <select name="" id="" class="form-control" #input (click)=clickedCountry(input.value)>
+              <option *ngFor ="let data of globalData" [value]="data.country">{{data.country}}</option>
+          </select>
+        </div>
+   </div>
+   <app-dashboard-card [totalConfirmed]='totalConfirmed'
+    [totalRecovered]='totalRecovered'
+    [totalDeaths]='totalDeaths'
+    [totalActive]='totalActive' ></app-dashboard-card>
+
+    <div class="row">
+      <div class="col">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>S.No.</th>
+            <th>Date</th>
+            <th>Case</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor  = "let countrydata of selectedCountry ;  index as i">
+            <td>{{i+1}}</td>
+            <td>{{countrydata.date | date }}</td>
+            <td>{{countrydata.cases}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+
+<div class="col"> 
+  <google-chart [type]='chart.LineChart' [data]= 'datatable' style="width: 100%;" [height]='chart.height' [options]='chart.options'></google-chart> 
+
+ </div>
+
+    </div>
+</div>
+
